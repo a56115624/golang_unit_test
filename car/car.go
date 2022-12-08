@@ -12,9 +12,15 @@ type Data struct {
 type dataInterface interface {
 	Division(a, b float64) (float64, error)
 	DOT(a, b float64) (float64, error)
+	Add(a, b float64) (float64, error)
 }
 
-// 這是我原本寫的Code
+// 兩數相加
+func (d Data) Add(a, b float64) (float64, error) {
+	return a + b, nil
+}
+
+// 兩數相除
 func (d Data) Division(a, b float64) (float64, error) {
 
 	if b == 0 {
@@ -24,7 +30,7 @@ func (d Data) Division(a, b float64) (float64, error) {
 	return a / b, nil
 }
 
-// 新寫得測試Code
+// 兩數相乘
 func (d Data) DOT(a, b float64) (float64, error) {
 	if b == 0 {
 		return 0, errors.New("除數不能為 0")

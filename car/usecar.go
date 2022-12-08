@@ -22,3 +22,10 @@ func (d *UseData) UseDot(a, b float64) (float64, error) {
 	}
 	return anser + 1, nil
 }
+func (d *UseData) UseAdd(a, b float64) (float64, error) {
+	anser, err := d.D.Add(a+1, b)
+	if err != nil {
+		return 1, err
+	}
+	return anser + 2, nil
+}

@@ -53,3 +53,22 @@ func Test_UseDot(t *testing.T) {
 	}
 
 }
+func TestAdd(t *testing.T) {
+	ctl := gomock.NewController(t)
+	defer ctl.Finish()
+
+	// mockMale := mock.NewMockMale(ctl)
+	mockMale := gotest.NewMockdataInterface(ctl)
+	gomock.InOrder(
+		mockMale.EXPECT().Add(float64(4), float64(2)).Return(float64(5), nil),
+	)
+	c := UseData{mockMale}
+	f, err := c.UseAdd(3, 2)
+	if err != nil {
+		t.Error("err, want error:", err)
+	}
+
+	if f != 7 {
+		t.Error("乘法錯誤")
+	}
+}
